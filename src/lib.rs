@@ -41,10 +41,10 @@ impl Range {
     pub fn get_difference(&self, other: &Range) -> (Option<Range>, Option<Range>){
         let mut first_part = None;
         let mut last_part = None;
-        if (self.min <= other.min) && (other.min > 0){
+        if (self.min < other.min) && (other.min > 0){
             first_part = Some(Range::new(self.min, other.min));
         }
-        if (other.max <= self.max) && (other.max < u64::MAX){
+        if (other.max < self.max) && (other.max < u64::MAX){
             last_part = Some(Range::new(other.max, self.max));
         }
         return (first_part, last_part);
